@@ -1,3 +1,15 @@
-*.sw? # vim swap file
-~$*   # MS Office Temporary file
-*.bak # backup file
+# vim swap file
+*.sw?
+
+# vim undo file
+.*.un~
+
+# MS Office Temporary file
+~$*
+
+# backup file
+*.bak
+
+# temporary file
+*.TMP
+

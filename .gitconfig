@@ -1,16 +1,16 @@
 [user]
 	name = TAKANO Sho / @masaru_b_cl
-	email = xxx@example.com
+	email = masaru.b.cl@gmail.com
 [core]
-	editor = ~/bin/vim73-kaoriya-win32/gvim.exe -c 'set fenc=utf-8'
+	editor = gvim
 	quotepath = false
 	excludesfile = ~/.gitignore_global
 	autocrlf = false
 [alias]
-	ci = commit
-	co = checkout
 	br = branch
 	brd = branch -d
+	ci = commit
+	co = checkout
 	slog = shortlog
 	st = status
 	graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%cn] %Cgreen%d%Creset %s\" --all --date=short
@@ -18,6 +18,7 @@
 	difftd = difftool --dir-diff -Y
 	merget = mergetool -y
 	cancel = !git commit -a -m 'Temporary commit for cancel' && git reset --hard HEAD~
+	branch-root = merge-base master HEAD
 [color]
 	ui = auto
 	status = always
@@ -26,18 +27,17 @@
 	default = simple
 [merge]
 	tool = WinMerge
-#ff = false
 [mergetool]
 	keepBackup = false
 [mergetool "WinMerge"]
-	cmd = ~/bin/WinMerge/WinMergeU.exe -r -e -u -wl -wr \"$LOCAL\" \"$BASE\" \"$REMOTE\" -o \"$MERGED\"
+	cmd = /c/Program\\ Files/WinMerge/WinMergeU.exe -r -e -u -wl -wr \"$LOCAL\" \"$BASE\" \"$REMOTE\" -o \"$MERGED\"
 [diff]
 	tool = WinMerge
 	guitool = WinMerge
 [difftool "WinMerge"]
-	cmd = ~/bin/WinMerge/WinMergeU.exe -r -e -ub -dl \"Base\" -dr \"Mine\" \"$LOCAL\" \"$REMOTE\"
+	cmd = /c/Program\\ Files/WinMerge/WinMergeU.exe -r -e -ub -dl \"Base\" -dr \"Mine\" \"$LOCAL\" \"$REMOTE\"
 [credential]
-  helper = wincred
+	helper = wincred
 [gui]
 	encoding = utf-8
 [pager]
