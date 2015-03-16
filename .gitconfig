@@ -6,6 +6,8 @@
 	quotepath = false
 	excludesfile = ~/.gitignore_global
 	autocrlf = false
+	preloadindex = true
+	fscache = true
 [alias]
 	br = branch
 	brd = branch -d
