@@ -3,11 +3,8 @@ set columns=120
 " ウインドウの高さ
 set lines=36
 " カラー設定
-colorscheme hybrid
-" colorscheme desert
-" フォント設定:
-set guifont=Ricty_Diminished:h12:cSHIFTJIS
-" 水平スクロールバー
+colorscheme molokai
+" 水平スクロールバー表示
 set guioptions+=b
 
 " 81桁目以降の色を変える
@@ -15,3 +12,6 @@ execute "set colorcolumn=" . join(range(81, 9999), ',')
 
 " DirectWrite（ベクターフォントをきれいに出す）
 set rop=type:directx
+
+" フォント設定:
+set guifont=MyricaM_M:h12
