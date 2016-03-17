@@ -14,4 +14,5 @@ execute "set colorcolumn=" . join(range(81, 9999), ',')
 set rop=type:directx
 
 " フォント設定:
-set guifont=MyricaM_M:h12
+set guifont=Consolas:h12
+set guifontwide=MyricaM_M:h12
