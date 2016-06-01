@@ -89,6 +89,9 @@ set undodir=~/.vim/undo
 "デフォルトの最小 window 高さを0に
 set winminheight=0
 
+" カレントディレクトリを自動で変更する
+set autochdir
+
 " Ctrl-J/K で上下のWindowへ移動
 nmap <C-J> <C-W>j<C-W>_
 nmap <C-K> <C-W>k<C-W>_
