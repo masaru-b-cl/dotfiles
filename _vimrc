@@ -36,7 +36,7 @@ nnoremap - <C-x>
 vnoremap * "zy:let @/ = @z<CR>n
 
 " ステータスラインにファイル名とエンコーディング名表示
-set statusline=%<%f\ %m\ %r%h%w%{'['.(&fenc!=''?&fenc:&enc).']'}%=\ (%v,%l)/%L%8P\
+set statusline=%<%f\ %m\ %r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=\ (%v,%l)/%L%8P\
 
 " 行番号：表示
 set number
