@@ -1,8 +1,7 @@
 [user]
 	name = TAKANO Sho / @masaru_b_cl
-	email = xxx@example.com
+	email = masaru.b.cl@gmail.com
 [core]
-	editor = ~/bin/vim73-kaoriya-win32/gvim.exe -c 'set fenc=utf-8'
 	quotepath = false
 	excludesfile = ~/.gitignore_global
 	autocrlf = false
@@ -22,25 +21,3 @@
 	ui = auto
 	status = always
 	diff = always
-[push]
-	default = simple
-[merge]
-	tool = WinMerge
-#ff = false
-[mergetool]
-	keepBackup = false
-[mergetool "WinMerge"]
-	cmd = ~/bin/WinMerge/WinMergeU.exe -r -e -u -wl -wr \"$LOCAL\" \"$BASE\" \"$REMOTE\" -o \"$MERGED\"
-[diff]
-	tool = WinMerge
-	guitool = WinMerge
-[difftool "WinMerge"]
-	cmd = ~/bin/WinMerge/WinMergeU.exe -r -e -ub -dl \"Base\" -dr \"Mine\" \"$LOCAL\" \"$REMOTE\"
-[credential]
-  helper = wincred
-[gui]
-	encoding = utf-8
-[pager]
-	log = diff-highlight | less
-	show = diff-highlight | less
-	diff = diff-highlight | less
