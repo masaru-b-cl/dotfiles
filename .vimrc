@@ -1,10 +1,7 @@
 let g:plugin_verifyenc_disable = 1
 
 set fileencodings=utf-8,cp932,euc-jp,iso-2022-jp
-if has('gui_running')
-  set encoding=utf-8
-endif
-
+set encoding=utf-8
 
 " tesxtwidthの設定を有効にする
 " Vimのtextwidth設定と.vimrc - 続・日々の雑感
@@ -17,24 +14,6 @@ filetype on
 " シンタックスハイライト機能
 syntax on
 
-" 折り返し行でも上下に移動
-nnoremap j gj
-nnoremap k gk
-nnoremap <Down> gj
-nnoremap <Up> gk
-
-" カーソルの箇所から行末までをヤンク
-nnoremap Y y$
-
-" インクリメント/デクリメント
-nnoremap + <C-a>
-nnoremap - <C-x>
-
-" ビジュアルで選択検索
-"   職場で学んだ快適なVim操作のためのtips - TIM Labs
-"   http://labs.timedia.co.jp/2014/09/learn-about-vim-in-the-workplace.html
-vnoremap * "zy:let @/ = @z<CR>n
-
 " ステータスラインにファイル名とエンコーディング名表示
 set statusline=%<%f\ %m\ %r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=\ (%v,%l)/%L%8P\
 set laststatus=2
@@ -43,7 +22,8 @@ set laststatus=2
 set number
 
 " バックアップ：なし
-set nobackup
+set backup
+set backupdir=~/.vim/backup
 
 " タブ展開：あり
 set expandtab
@@ -93,14 +73,6 @@ set winminheight=0
 " カレントディレクトリを自動で変更する
 set autochdir
 
-" Ctrl-J/K で上下のWindowへ移動
-nmap <C-J> <C-W>j<C-W>_
-nmap <C-K> <C-W>k<C-W>_
-
-" <C-p>でヤンクした文字を変えずに連続貼付けする
-"   http://qiita.com/fukajun/items/bd97a9b963dae40b63f5
-vnoremap <silent> <C-p> "0p
-
 " ### NeoBundle ###
 " Note: Skip initialization for vim-tiny or vim-small.
 if 0 | endif
@@ -122,9 +94,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " My Bundles here:
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'tomasr/molokai'
-" NeoBundle 'Shougo/neocomplete'
-" NeoBundle 'Shougo/neosnippet'
-" NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'Shougo/neocomplete'
 
 call neobundle#end()
 
@@ -142,22 +112,3 @@ let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
 let g:neocomplete#sources#syntax#min_keyword_length = 3
-
-" ### neosnippet ###
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-" SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\<TAB>"
-
-" For snippet_complete marker.
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
