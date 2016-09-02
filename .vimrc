@@ -1,12 +1,10 @@
 let g:plugin_verifyenc_disable = 1
 
-set fileencodings=utf-8,cp932,euc-jp,iso-2022-jp
-set encoding=utf-8
-
-" tesxtwidthの設定を有効にする
-" Vimのtextwidth設定と.vimrc - 続・日々の雑感
-" http://d.hatena.ne.jp/WK6/20120606/1338993826
-autocmd FileType text setlocal textwidth=0
+set fileencoding=utf-8
+set fileencodings=ucs-bom,utf-8,cp932,utf-16,utf-16le,euc-jp,iso-2022-jp
+if has('gui_running')
+  set encoding=utf-8
+endif
 
 " ファイル形式検出
 filetype on
@@ -14,16 +12,20 @@ filetype on
 " シンタックスハイライト機能
 syntax on
 
-" ステータスラインにファイル名とエンコーディング名表示
+" ステータスラインにファイル名とエンコーディング、ファイルフォーマットを表示
 set statusline=%<%f\ %m\ %r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=\ (%v,%l)/%L%8P\
-set laststatus=2
 
 " 行番号：表示
 set number
 
-" バックアップ：なし
-set backup
+" バックアップ先を一つのフォルダーにまとめる
 set backupdir=~/.vim/backup
+
+" アンドゥファイルを一つのフォルダーにまとめる
+set undodir=~/.vim/undo
+
+" スワップファイルを一つのフォルダーにまとめる
+set directory=~/.vim/swp
 
 " タブ展開：あり
 set expandtab
@@ -35,8 +37,8 @@ set shiftwidth=2
 " 自動インデント：あり
 set autoindent
 
-" 折り返し：あり
-set wrap
+" 折り返し：なし
+set nowrap
 
 " リストモード：オン
 set list
@@ -46,10 +48,6 @@ set cursorline
 
 " 正規表現でvery magicを使う
 set magic
-nnoremap / /\v
-
-" ヤンクした内容をクリップボードに保管する
-set clipboard=unnamed
 
 " タブを常に表示
 set showtabline=2
@@ -63,12 +61,6 @@ set display=lastline
 " 対応する括弧を1秒間強調表示する
 set showmatch
 set matchtime=1
-
-" アンドゥファイルを一つのフォルダーにまとめる
-set undodir=~/.vim/undo
-
-"デフォルトの最小 window 高さを0に
-set winminheight=0
 
 " カレントディレクトリを自動で変更する
 set autochdir
@@ -93,8 +85,10 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 " My Bundles here:
 NeoBundle 'Shougo/neobundle.vim'
-NeoBundle 'tomasr/molokai'
 NeoBundle 'Shougo/neocomplete'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'tpope/vim-surround'
 
 call neobundle#end()
 
@@ -112,3 +106,22 @@ let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
 let g:neocomplete#sources#syntax#min_keyword_length = 3
+
+" ### neosnippet ###
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: "\<TAB>"
+
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
