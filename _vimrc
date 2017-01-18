@@ -42,8 +42,8 @@ set shiftwidth=2
 " 自動インデント：あり
 set autoindent
 
-" 折り返し：なし
-set nowrap
+" 折り返し：あり
+set wrap
 
 " リストモード：オン
 set list
@@ -76,6 +76,12 @@ set winminheight=0
 
 " カレントディレクトリを自動で変更する
 set autochdir
+
+" インデントされた行を折り返したとき、折り返し後行の開始位置をインデントに合わせる
+set breakindent
+
+" ウィンドウ分割時、現在のウィンドウだけ半分に分割する
+set noequalalways
 
 " ### NeoBundle ###
 " Note: Skip initialization for vim-tiny or vim-small.
