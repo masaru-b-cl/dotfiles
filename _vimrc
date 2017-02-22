@@ -2,14 +2,6 @@ let g:plugin_verifyenc_disable = 1
 
 set fileencoding=utf-8 bomb
 set fileencodings=ucs-bom,utf-8,cp932,utf-16,utf-16le,euc-jp,iso-2022-jp
-if has('gui_running')
-  set encoding=utf-8
-endif
-
-" tesxtwidthの設定を有効にする
-" Vimのtextwidth設定と.vimrc - 続・日々の雑感
-" http://d.hatena.ne.jp/WK6/20120606/1338993826
-autocmd FileType text setlocal textwidth=0
 
 " ファイル形式検出
 filetype on
@@ -37,7 +29,6 @@ set expandtab
 
 " タブ幅：2
 set tabstop=2
-set shiftwidth=2
 
 " 自動インデント：あり
 set autoindent
@@ -45,15 +36,14 @@ set autoindent
 " 折り返し：あり
 set wrap
 
+" インデントされた行を折り返したとき、折り返し後行の開始位置をインデントに合わせる
+set breakindent
+
 " リストモード：オン
 set list
 
 " カーソル行：あり
 set cursorline
-
-" 正規表現でvery magicを使う
-set magic
-nnoremap / /\v
 
 " ヤンクした内容をクリップボードに保管する
 set clipboard=unnamed
@@ -76,9 +66,6 @@ set winminheight=0
 
 " カレントディレクトリを自動で変更する
 set autochdir
-
-" インデントされた行を折り返したとき、折り返し後行の開始位置をインデントに合わせる
-set breakindent
 
 " ウィンドウ分割時、現在のウィンドウだけ半分に分割する
 set noequalalways
@@ -108,11 +95,14 @@ NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'tpope/vim-surround'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'glidenote/memolist.vim'
 
 call neobundle#end()
 
 " Required:
 filetype plugin indent on
+syntax enable
 
 " If there are uninstalled bundles found on startup,
 " this will conveniently prompt you to install them.
@@ -144,3 +134,10 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
+
+" memolist.vim
+let g:memolist_path = "~/Documents/memo"
+let g:memolist_memo_suffix = "markdown"
+let g:memolist_memo_suffix = "md"
+let g:memolist_unite = 1
+let g:memolist_unite_option = "-start-insert"
