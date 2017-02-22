@@ -1,3 +1,5 @@
+" 内部エンコーディング指定
+set encoding=utf-8
 " ウインドウの幅
 set columns=120
 " ウインドウの高さ
